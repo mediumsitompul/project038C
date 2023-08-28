@@ -20,6 +20,12 @@ class MyGoogle1 extends StatelessWidget {
   }
 }
 
+//GLOBAL PARAMETER
+//CONVERT DATA STRING TO DOUBLE
+double _lat1 = double.parse('lat1b');
+double _lng1 = double.parse('lng1b');
+LatLng _showLocation = LatLng(_lat1, _lng1);
+
 class MyGoogle2 extends StatefulWidget {
   String lat1b, lng1b;
 
@@ -30,8 +36,6 @@ class MyGoogle2 extends StatefulWidget {
 }
 
 class _MyGoogle2State extends State<MyGoogle2> {
-
-
   BitmapDescriptor markerIcon1 = BitmapDescriptor.defaultMarker;
   void addCustomeIcon() {
     BitmapDescriptor.fromAssetImage(
@@ -48,9 +52,9 @@ class _MyGoogle2State extends State<MyGoogle2> {
   void initState() {
     addCustomeIcon();
 
-    double _lat1 = double.parse('${widget.lat1b.toString()}');
-    double _lng1 = double.parse('${widget.lng1b.toString()}');
-    LatLng _showLocation = LatLng(_lat1, _lng1);
+    // double _lat1 = double.parse('${widget.lat1b.toString()}');
+    // double _lng1 = double.parse('${widget.lng1b.toString()}');
+    // LatLng _showLocation = LatLng(_lat1, _lng1);
 
     // TODO: implement initState
     super.initState();
@@ -63,19 +67,23 @@ class _MyGoogle2State extends State<MyGoogle2> {
         children: [
           GoogleMap(
             initialCameraPosition: CameraPosition(
-              target: LatLng(
-                double.parse('${widget.lat1b.toString()}'),
-                double.parse('${widget.lng1b.toString()}'),
-              ),
+              target: _showLocation,
+              // LatLng(
+              //   double.parse('${widget.lat1b.toString()}'),
+              //   double.parse('${widget.lng1b.toString()}'),
+              // ),
               zoom: 12,
             ),
             markers: {
               Marker(
                 markerId: MarkerId("1"),
-                position: LatLng(
-                  double.parse('${widget.lat1b.toString()}'),
-                  double.parse('${widget.lng1b.toString()}'),
-                ),
+                position: _showLocation,
+
+                // LatLng(
+                //   double.parse('${widget.lat1b.toString()}'),
+                //   double.parse('${widget.lng1b.toString()}'),
+                // ),
+
                 infoWindow: InfoWindow(
                     title: "Title1: ${widget.lat1b}",
                     snippet: "Snippet1: ${widget.lng1b}"),
@@ -86,10 +94,12 @@ class _MyGoogle2State extends State<MyGoogle2> {
             circles: {
               Circle(
                 circleId: CircleId("1"),
-                center: LatLng(
-                  double.parse('${widget.lat1b.toString()}'),
-                  double.parse('${widget.lng1b.toString()}'),
-                ),
+                center: _showLocation,
+
+                // LatLng(
+                //   double.parse('${widget.lat1b.toString()}'),
+                //   double.parse('${widget.lng1b.toString()}'),
+                // ),
                 radius: 5000,
                 strokeColor: Colors.blue,
                 fillColor: Colors.black12,
@@ -120,3 +130,4 @@ class _MyGoogle2State extends State<MyGoogle2> {
     );
   }
 }
+
