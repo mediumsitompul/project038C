@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MyGoogle1 extends StatelessWidget {
-  String lat1a, lng1a;
+  final String lat1a, lng1a;
 
   MyGoogle1({super.key, required this.lat1a, required this.lng1a});
 
@@ -22,12 +22,12 @@ class MyGoogle1 extends StatelessWidget {
 
 //GLOBAL PARAMETER
 //CONVERT DATA STRING TO DOUBLE
-double _lat1 = double.parse('lat1b');
-double _lng1 = double.parse('lng1b');
-LatLng _showLocation = LatLng(_lat1, _lng1);
+// double _lat1 = double.parse('lat1b');
+// double _lng1 = double.parse('lng1b');
+// LatLng _showLocation = LatLng(_lat1, _lng1);
 
 class MyGoogle2 extends StatefulWidget {
-  String lat1b, lng1b;
+  final String lat1b, lng1b;
 
   MyGoogle2({super.key, required this.lat1b, required this.lng1b});
 
@@ -52,9 +52,9 @@ class _MyGoogle2State extends State<MyGoogle2> {
   void initState() {
     addCustomeIcon();
 
-    // double _lat1 = double.parse('${widget.lat1b.toString()}');
-    // double _lng1 = double.parse('${widget.lng1b.toString()}');
-    // LatLng _showLocation = LatLng(_lat1, _lng1);
+    double _lat1 = double.parse('${widget.lat1b.toString()}');
+    double _lng1 = double.parse('${widget.lng1b.toString()}');
+    LatLng _showLocation = LatLng(_lat1, _lng1);
 
     // TODO: implement initState
     super.initState();
@@ -67,23 +67,25 @@ class _MyGoogle2State extends State<MyGoogle2> {
         children: [
           GoogleMap(
             initialCameraPosition: CameraPosition(
-              target: _showLocation,
-              // LatLng(
-              //   double.parse('${widget.lat1b.toString()}'),
-              //   double.parse('${widget.lng1b.toString()}'),
-              // ),
+              target:
+                  //_showLocation,
+
+                  LatLng(
+                double.parse('${widget.lat1b.toString()}'),
+                double.parse('${widget.lng1b.toString()}'),
+              ),
               zoom: 12,
             ),
             markers: {
               Marker(
                 markerId: MarkerId("1"),
-                position: _showLocation,
+                position:
+                    //_showLocation,
 
-                // LatLng(
-                //   double.parse('${widget.lat1b.toString()}'),
-                //   double.parse('${widget.lng1b.toString()}'),
-                // ),
-
+                    LatLng(
+                  double.parse('${widget.lat1b.toString()}'),
+                  double.parse('${widget.lng1b.toString()}'),
+                ),
                 infoWindow: InfoWindow(
                     title: "Title1: ${widget.lat1b}",
                     snippet: "Snippet1: ${widget.lng1b}"),
@@ -94,12 +96,14 @@ class _MyGoogle2State extends State<MyGoogle2> {
             circles: {
               Circle(
                 circleId: CircleId("1"),
-                center: _showLocation,
+                center:
 
-                // LatLng(
-                //   double.parse('${widget.lat1b.toString()}'),
-                //   double.parse('${widget.lng1b.toString()}'),
-                // ),
+                    //_showLocation,
+
+                    LatLng(
+                  double.parse('${widget.lat1b.toString()}'),
+                  double.parse('${widget.lng1b.toString()}'),
+                ),
                 radius: 5000,
                 strokeColor: Colors.blue,
                 fillColor: Colors.black12,
